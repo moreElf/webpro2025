@@ -31,14 +31,16 @@ app.get("/", async (req, res) => {
 // 新しいユーザーを登録するフォームが送られてきた ('/users') ときの対応
 app.post("/users", async (req, res) => {
   const name = req.body.name; // フォームから送信された名前を取得
+  const age = Number(req.body.age); // フォームから送信された年齢を取得し、数値に変換
+
   if (name) {
-    // 取得した名前で、新しいユーザーをデータベースに作成する
+    // ユーザーを作成するときに、年齢(age)も一緒に保存する
     const newUser = await prisma.user.create({
-      data: { name },
+      data: { name, age: isNaN(age) ? null : age },
     });
     console.log("新しいユーザーを追加しました:", newUser);
   }
-  res.redirect("/"); // ユーザー追加後、一覧ページにリダイレクトする
+  res.redirect("/"); // ユーザー追加後、一覧ページにリダイレクト
 });
 
 // --- お客様への対応はここまで ---
