@@ -21,6 +21,8 @@
   "homepage": "https://github.com/moreElf/webpro2025#readme",
   "dependencies": {
     "@prisma/client": "^6.10.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
     "prisma": "^6.10.1",
     "tsx": "^4.20.3"
   },
